@@ -127,3 +127,11 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+/token.vk
+/img.png
+/images/items/
+/font/*
+!/font/mine.ttf
+!/font/Roboto
+!/font/Inter

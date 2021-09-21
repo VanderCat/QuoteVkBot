@@ -76,11 +76,18 @@ while True:
                             vk.messages.send(peer_id=text['message']['peer_id'],random_id=random.randint(0,999),attachment='{}{}_{}'.format(attachment['type'],attachment['doc']['owner_id'], attachment['doc']['id']))
                         elif text["message"]["text"].lower().split("\n")[0].split(" ")[1] == "майн":
                             if len(QOFPobj.textbody.maintext[0].split("\n")) >= 2:
-                                MineAchieve.mk(QOFPobj).save('img.png')
-                                print("IMG Saved")
-                                attachment = vku.photo_messages("img.png", peer_id=text["message"]["peer_id"])
-                                print("Photo Uploaded")
-                                vk.messages.send(peer_id=text['message']['peer_id'],random_id=random.randint(0,999),attachment='photo{}_{}'.format(attachment[0]['owner_id'], attachment[0]['id']))
+                                if text["message"]["text"].lower().split("\n")[0].split(" ")[2] == "док":
+                                    MineAchieve.mk(QOFPobj,True).save('img.png')
+                                    print("IMG Saved")
+                                    attachment = vku.document("img.png", group_id="189733255", message_peer_id=text['message']['peer_id'])
+                                    print("Document Uploaded")
+                                    vk.messages.send(peer_id=text['message']['peer_id'],random_id=random.randint(0,999),attachment='{}{}_{}'.format(attachment['type'],attachment['doc']['owner_id'], attachment['doc']['id']))
+                                else:
+                                    MineAchieve.mk(QOFPobj).save('img.png')
+                                    print("IMG Saved")
+                                    attachment = vku.photo_messages("img.png", peer_id=text["message"]["peer_id"])
+                                    print("Photo Uploaded")
+                                    vk.messages.send(peer_id=text['message']['peer_id'],random_id=random.randint(0,999),attachment='photo{}_{}'.format(attachment[0]['owner_id'], attachment[0]['id']))
                             else:
                                 vk.messages.send(peer_id=text['message']['peer_id'],random_id=random.randint(0,999),message="СКОЛЬКО ТЕБЕ ПОВТОРЯТЬ МОЖНО, 2 СТРОКИ НАДО >:C")
                     else:
