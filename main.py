@@ -76,7 +76,12 @@ while True:
                             vk.messages.send(peer_id=text['message']['peer_id'],random_id=random.randint(0,999),attachment='{}{}_{}'.format(attachment['type'],attachment['doc']['owner_id'], attachment['doc']['id']))
                         elif text["message"]["text"].lower().split("\n")[0].split(" ")[1] == "майн":
                             if len(QOFPobj.textbody.maintext[0].split("\n")) >= 2:
-                                if text["message"]["text"].lower().split("\n")[0].split(" ")[2] == "док":
+                                temp = "недок"
+                                try:
+                                    temp = text["message"]["text"].lower().split("\n")[0].split(" ")[2]
+                                except:
+                                    temp = "недок"
+                                if temp == "док":
                                     MineAchieve.mk(QOFPobj,True).save('img.png')
                                     print("IMG Saved")
                                     attachment = vku.document("img.png", group_id="189733255", message_peer_id=text['message']['peer_id'])
