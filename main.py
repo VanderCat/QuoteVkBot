@@ -7,7 +7,7 @@ import random
 import requests.exceptions
 
 with open("token.vk", 'r') as f:
-    token = f.readline()
+    token = f.readline().rstrip()
 vk_session = vk_api.VkApi(token=token)
 
 vk = vk_session.get_api()
