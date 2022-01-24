@@ -29,15 +29,23 @@ while True:
                         print("Temp data init")
                         try:
                             usr = vk.users.get(user_ids=[text["message"]["reply_message"]["from_id"]],fields=["photo_200"])
+                            if usr == []:
+                                raise Exception("idk")
+                            print("is user")
                         except:
                             usr = vk.groups.getById(group_id=-text["message"]["reply_message"]["from_id"],fields=["photo_200"])
+                            print("is public")
                     else:
                         tempdate = text['message']['date']
                         print("Temp data init")
                         try:
                             usr = vk.users.get(user_ids=[text["message"]["fwd_messages"][0]["from_id"]],fields=["photo_200"])
+                            if usr == []:
+                                raise Exception("idk")
+                            print("is user")
                         except:
                             usr = vk.groups.getById(group_id=-text["message"]["fwd_messages"][0]["from_id"],fields=["photo_200"])
+                            print("is public")
                     print("Got: " + str(usr))
         
                     class QOFPobj:
