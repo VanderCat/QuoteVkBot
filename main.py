@@ -79,7 +79,7 @@ while True:
                         if text["message"]["text"].lower().split("\n")[0].split(" ")[1] == "док":
                             QOGP2.mk(QOFPobj,True).save('img.png')
                             print("IMG Saved")
-                            attachment = vku.document("img.png", group_id="189733255", message_peer_id=text['message']['peer_id'])
+                            attachment = vku.document("img.png", group_id="189733255")
                             print("Document Uploaded")
                             vk.messages.send(peer_id=text['message']['peer_id'],random_id=random.randint(0,999),attachment='{}{}_{}'.format(attachment['type'],attachment['doc']['owner_id'], attachment['doc']['id']))
                         elif text["message"]["text"].lower().split("\n")[0].split(" ")[1] == "майн":
@@ -92,13 +92,13 @@ while True:
                                 if temp == "док":
                                     MineAchieve.mk(QOFPobj,True).save('img.png')
                                     print("IMG Saved")
-                                    attachment = vku.document("img.png", group_id="189733255", message_peer_id=text['message']['peer_id'])
+                                    attachment = vku.document("img.png", group_id="189733255")
                                     print("Document Uploaded")
                                     vk.messages.send(peer_id=text['message']['peer_id'],random_id=random.randint(0,999),attachment='{}{}_{}'.format(attachment['type'],attachment['doc']['owner_id'], attachment['doc']['id']))
                                 else:
                                     MineAchieve.mk(QOFPobj).save('img.png')
                                     print("IMG Saved")
-                                    attachment = vku.photo_messages("img.png", peer_id=text["message"]["peer_id"])
+                                    attachment = vku.photo_messages("img.png")
                                     print("Photo Uploaded")
                                     vk.messages.send(peer_id=text['message']['peer_id'],random_id=random.randint(0,999),attachment='photo{}_{}'.format(attachment[0]['owner_id'], attachment[0]['id']))
                             else:
@@ -106,7 +106,7 @@ while True:
                     else:
                         QOGP2.mk(QOFPobj).save('img.png')
                         print("IMG Saved")
-                        attachment = vku.photo_messages("img.png", peer_id=text["message"]["peer_id"])
+                        attachment = vku.photo_messages("img.png")
                         print("Photo Uploaded")
                         vk.messages.send(peer_id=text['message']['peer_id'],random_id=random.randint(0,999),attachment='photo{}_{}'.format(attachment[0]['owner_id'], attachment[0]['id']))
                     print(attachment)
