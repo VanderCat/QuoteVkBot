@@ -23,11 +23,11 @@ def text_wrap(text,font,writing,max_width):
     for word in words:
         # try putting this word in last line then measure
         lines[-1].append(word)
-        w = writing.multiline_textsize('\n'.join([' '.join(line) for line in lines]), font=font)[0]
+        w = writing.textlength('\n'.join([' '.join(line) for line in lines]), font=font)
         if w > max_width: # too wide
             # take it back out, put it on the next line, then measure again
             lines.append([lines[-1].pop()])
-            w = writing.multiline_textsize('\n'.join([' '.join(line) for line in lines]), font=font)[0]
+            w = writing.textlength('\n'.join([' '.join(line) for line in lines]), font=font)
     return '\n'.join([' '.join(line) for line in lines]) #Function by https://stackoverflow.com/users/13639308/chris-jones
 def mk(object, alpha=False):
     #Setup fonts
@@ -59,7 +59,7 @@ def mk(object, alpha=False):
         mode = "RGB"
     img = Image.new(mode, (object.settings.width*object.settings.size, object.settings.minheight*object.settings.size + object.settings.margin[0]*object.settings.size + object.settings.margin[2]*object.settings.size), color)
     d = ImageDraw.Draw(img) 
-    txth = d.multiline_textsize(messages,FontMessage)[1]
+    txth = d.multiline_textbbox((0,0),messages,font=FontMessage)[3]
     print(txth)
     #prepare image if higher
     if txth > 44*object.settings.size:
