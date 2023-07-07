@@ -23,11 +23,11 @@ def text_wrap(text,font,writing,max_width):
     for word in words:
         # try putting this word in last line then measure
         lines[-1].append(word)
-        w = writing.textlength('\n'.join([' '.join(line) for line in lines]), font=font)
+        w = writing.multiline_textbbox((0,0),'\n'.join([' '.join(line) for line in lines]), font=font)[2]
         if w > max_width: # too wide
             # take it back out, put it on the next line, then measure again
             lines.append([lines[-1].pop()])
-            w = writing.textlength('\n'.join([' '.join(line) for line in lines]), font=font)
+            w = writing.multiline_textbbox((0,0),'\n'.join([' '.join(line) for line in lines]), font=font)[2]
     return '\n'.join([' '.join(line) for line in lines]) #Function by https://stackoverflow.com/users/13639308/chris-jones
 def mk(object, alpha=False):
     #Setup fonts
